@@ -1,0 +1,17 @@
+### READ ALL FILTERED
+@baseurl= http://localhost:3000
+GET {{baseurl}}/films/?minimum-duration=70
+
+### READ ONE
+GET {{baseurl}}/films/2
+
+### create one
+POST {{baseurl}}/films
+Content-Type: application/json
+
+{
+    "title":"zobana",
+    "duration":60,
+    "budget": 30,
+    "link":"kaka"
+}
