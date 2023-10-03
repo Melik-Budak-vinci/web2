@@ -1,0 +1,37 @@
+### READ ALL FILTERED
+@baseurl= http://localhost:3000
+GET {{baseurl}}/films/
+
+### READ ONE
+GET {{baseurl}}/films/2
+
+### create one
+POST {{baseurl}}/films
+Content-Type: application/json
+
+{
+    "title":"zobana",
+    "duration":60,
+    "budget": 30,
+    "link":"kaka"
+}
+###delete one
+DELETE {{baseurl}}/films/2
+### update one
+PATCH {{baseurl}}/films/2
+Content-Type: application/json
+
+{   
+    "duration":800,
+    "budget": 200
+}
+### create one or update one
+PUT {{baseurl}}/films/2
+Content-Type: application/json
+
+{
+    "title":"zobana",
+    "duration":60,
+    "budget": 30,
+    "link":"kaka"
+}
