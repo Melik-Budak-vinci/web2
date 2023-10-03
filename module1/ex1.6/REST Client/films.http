@@ -10,20 +10,20 @@ POST {{baseurl}}/films
 Content-Type: application/json
 
 {
-    "title":"zobana",
+    "title":"voyage en belgique ",
     "duration":60,
     "budget": 30,
-    "link":"kaka"
+    "link":"et weeeee potototototototot"
 }
 ###delete one
-DELETE {{baseurl}}/films/2
+DELETE {{baseurl}}/films/4
 ### update one
 PATCH {{baseurl}}/films/2
 Content-Type: application/json
 
 {   
     "duration":800,
-    "budget": 200,
+    "budget": 200
 }
 ### create one or update one
 PUT {{baseurl}}/films/2

@@ -4,8 +4,9 @@ const { serialize, parse } = require('../utils/json.js');
 var router = express.Router();
 const jsonDbPath = __dirname + '/../data/films.json'
 
-const LIST = parse(jsonDbPath);
+
 router.get('/', function (req, res, next) {
+    const LIST = parse(jsonDbPath);
     console.log(req.query)
     if (req?.query?.['minimum-duration'] === undefined) res.json(LIST)
     const min_duration = req?.query?.['minimum-duration']
@@ -20,12 +21,14 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:id', function (req, res, next) {
+    const LIST = parse(jsonDbPath);
     console.log(`GET /films/${req.params.id}`)
     const index = LIST.findIndex((film) => film.id == req.params.id)
     if (index < 0) return res.sendStatus(404);
     res.json(LIST[index]);
 });
 router.delete('/:id', function (req, res, next) {
+    const LIST = parse(jsonDbPath);
     const id = req?.params?.id;
     const findIndex = LIST.findIndex(film => film.id == id);
     if (findIndex < 0) return res.sendStatus(404);
@@ -35,6 +38,7 @@ router.delete('/:id', function (req, res, next) {
     res.json(elementSup);
 });
 router.patch('/:id', function (req, res, next) {
+    const LIST = parse(jsonDbPath);
     const id = req?.params?.id;
     const duration = req?.body?.duration > 0 ? req.body.duration : undefined;
     const budget = req.body?.budget > 0 ? req.body.budget : undefined;
@@ -49,6 +53,7 @@ router.patch('/:id', function (req, res, next) {
     res.json(newElementAfterModif)
 });
 router.put('/:id', function (req, res, next) {
+    const LIST = parse(jsonDbPath);
     //verifications des parametre
     const id = req?.params?.id;
     const title = req?.body?.title
@@ -71,6 +76,7 @@ router.put('/:id', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
+    const LIST = parse(jsonDbPath);
     const newFilm = req.body;
     const title = typeof (newFilm?.title) === 'string' ? newFilm.title : undefined;
     if (LIST.find(e => e.title === title)) return res.sendStatus(409);
