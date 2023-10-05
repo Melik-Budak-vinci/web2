@@ -10,13 +10,13 @@ POST {{baseurl}}/films
 Content-Type: application/json
 
 {
-    "title":"nani",
+    "title":"zobana",
     "duration":60,
     "budget": 30,
     "link":"kaka"
 }
 ###delete one
-DELETE {{baseurl}}/films/5
+DELETE {{baseurl}}/films/2
 ### update one
 PATCH {{baseurl}}/films/2
 Content-Type: application/json
