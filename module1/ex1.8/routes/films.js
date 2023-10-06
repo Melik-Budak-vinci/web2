@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 const express = require('express');
+const { readAllFilms } = require('../models/films');
 
 const { serialize, parse } = require('../utils/json');
 
@@ -7,17 +9,14 @@ const jsonDbPath = `${__dirname  }/../data/films.json`;
 
 
 router.get('/', (req, res) => {
-  const LIST = parse(jsonDbPath);
-  console.log(req.query);
-  if (req?.query?.['minimum-duration'] === undefined) res.json(LIST);
   
+  console.log(req.query);
   const minDuration = req?.query?.['minimum-duration']
     ? Number(req.query['minimum-duration'])
     : undefined;
-  if (!minDuration || typeof minDuration !== 'number') return res.sendStatus(400);
-
-  const listtriee = [...LIST].filter((e) => e.duration >= minDuration);
-    return res.json(listtriee);
+  if ( typeof minDuration !== 'number') return res.sendStatus(400);
+  const list = readAllFilms
+    return res.json(list);
 });
 
 router.get('/:id', (req, res) => {
