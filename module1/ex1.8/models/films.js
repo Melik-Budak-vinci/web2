@@ -1,7 +1,7 @@
 
 const { parse, serialize } = require('../utils/json');
 
-const jsonDbPath = `${__dirname }/../data/pizzas.json`;
+const jsonDbPath = `${__dirname }/../data/films.json`;
 
 function readAllFilms(orderBy){
     const LIST = parse(jsonDbPath);
@@ -18,10 +18,19 @@ function readOneFilm(id){
 };
 function addOneFilm(addElement){
    const LIST =  parse(jsonDbPath);
+   console.log("ffidsfdsjfdsj ",LIST.length);
+   
+   
+   
+   
    const indexFound = LIST.length !== 0 ? LIST.length-1 : undefined
+   console.log(indexFound)
    const trueId = indexFound !==undefined ? LIST[indexFound]?.id : 0
+   console.log(LIST[indexFound].id);
+   console.log(trueId);
+
    const nextid = trueId+1;
-   const newElement = {nextid, ...addElement};
+   const newElement = {id:nextid, ...addElement};
    LIST.push(newElement);
    serialize(jsonDbPath,LIST);
    return newElement;

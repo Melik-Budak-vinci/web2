@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
   const minDuration = req?.query?.['minimum-duration']
     ? Number(req.query['minimum-duration'])
     : undefined;
-  if ( typeof minDuration !== 'number') return res.sendStatus(400);
+  if (minDuration && typeof minDuration !== 'number') return res.sendStatus(400);
   const list = readAllFilms(minDuration);
   return res.json(list);
 });
@@ -66,7 +66,7 @@ router.put('/:id', (req, res) => {
   return res.json(newelement);
 });
 
-router.post('/', (req, res,next) => {
+router.post('/', (req, res,) => {
  
   const newFilm = req?.body;
   const title = typeof newFilm?.title === 'string' ? newFilm.title : undefined;
@@ -76,7 +76,7 @@ router.post('/', (req, res,next) => {
   const link = typeof newFilm?.link === 'string' ? newFilm.link : undefined;
   if (!title || !duration || !budget || !link) return res.sendStatus(400);
   addOneFilm(newFilm)
-  return next()
+  return(newFilm);
 });
 
 module.exports = router;

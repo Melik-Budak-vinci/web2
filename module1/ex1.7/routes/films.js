@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
 
     const listtriee = [...LIST].filter((e) => e.duration >= min_duration);
     res.json(listtriee);
-
+    
 
 });
 
