@@ -1,3 +1,28 @@
 @path = http://localhost:3000/texts
 ### read all without order
-GET 
+GET {{path}}
+### read all with order
+GET {{path}}?level=qmld
+### read one with id 
+GET {{path}}/3d82587c-0232-43fd-8076-d1916a1f7493
+
+### add one 
+POST {{path}}
+Content-Type: application/json
+
+{
+    "content" : "kqldq",
+    "level" : "hard"
+}
+
+### create one or update one
+PUT {{path}}/3d82587c-0232-43fd-8076-d1916a1f749
+Content-Type: application/json
+
+{
+    "content" :"zeingolo ",
+    "level" : "hard"
+}
+
+### delete one text
+DELETE  {{path}}/3d8

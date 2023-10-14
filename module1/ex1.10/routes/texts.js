@@ -1,29 +1,60 @@
 const express = require('express');
+
 const router = express.Router();
-const {v4 : uuidv4} = require('uuid');
+
 const {
-    readAllTexts
+    readAllTexts,
+    addOneText,
+    levelVerified,
+    readGetTexts,
+    putOneText,
+    deleteOneText
 } = require('../models/texts');
+
 router.get('/', (req,res) => {
-    const levelVerified = req.query?.level;
-    const level = levelVerified===undefined|| levelVerified ==='easy' || levelVerified === 'medium'
-    || levelVerified === 'hard' ? levelVerified : -1;
-    if(level===-1)res.sendStatus(400);
-    const list = readAllTexts(level);
-    res.json(list)
+    const level = req?.query?.level;
+    const texts  = readAllTexts(level);
+    if(!texts)return res.sendStatus(400);
+    return res.json(texts)
+});
+
+router.get('/:id', (req,res) => {
+    const id = req?.params?.id;
+    const text  = readGetTexts(id);
+    if(!text)return res.sendStatus(404);
+    return res.json(text)
 });
 
 
 router.post('/' , (req,res) => {
-    const content = typeof req.body?.content ==='string' 
+    const content = req.body?.content?.trim()?.length !==0 
         ? req.body.content 
         : undefined;
-    const level = req.body?.level ==='easy' || req.body.level === 'medium'
-        || req.body.level === 'hard' ? req.body.level : undefined;
+    const level = req?.body?.level;
+    const levelIsOk = levelVerified(level);
+    if(!content || !levelIsOk) return res.sendStatus(400);
+    const newElement = addOneText(req.body);
+    if(!newElement)return res.sendStatus(409);
+    return res.json(newElement);
+});
 
-    if(!content || !level) res.sendStatus(400);
-    
+router.delete('/:id' , (req,res) => {
+    const id = req?.params?.id
+    const deletedElement = deleteOneText(id);
+    if(!deletedElement)return res.sendStatus(400)
+    return res.json(deletedElement);
+});
+
+router.put('/:id' , (req,res) => {
+    const id = req?.params?.id
+   const content = req?.body?.content;
+   const level = req?.body?.level;
+   const levelIsOk = levelVerified(level);
+   if(!content || !levelIsOk)return res.sendStatus(400);
+    return putOneText(id,req.body);
+
 })
+
 
 
 
