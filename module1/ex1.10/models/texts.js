@@ -11,8 +11,6 @@ const jsonDbPath = `${__dirname }/../data/texts.json`;
 
 function readAllTexts(orderBy){
     const list = parse(jsonDbPath);
-    console.log(list);
-    console.log(orderBy)
     if(!orderBy) return list;
     const level = levelVerified(orderBy);
     if(level){
@@ -51,7 +49,7 @@ function putOneText (id,element){
 }
 function deleteOneText (id){
     const list = parse(jsonDbPath);
-    console.log(id)
+   
     const index = list.findIndex((t=>t.id===id))
     if(index<0)return undefined
     const element = list.splice(index,1)[0];
