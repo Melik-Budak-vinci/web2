@@ -1,45 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './stylesheets/main.css';
-import harry from './img/harry potter.jpg'
-import SAO from './img/Sword Art Online.jpg'
+import harry from '../../img/harry potter.jpg';
+import SAO from '../../img/Sword Art Online.jpg';
 
 const main = document.querySelector('main');
 
-
-homePage();
-
-
-function homePage(){
+function HomePage(){
     main.innerHTML = ''
     addTableAsNode();
     renderPhoto(harry);
-    renderPhoto(SAO);
+    renderPhoto(SAO)
 }
 
 
-
-function buttonAboutUs(page){
-    const button = document.createElement('button');
-    button.className = 'button --bs-danger';
-    button.innerText = 'about us';
-
-    main.appendChild(button);
-
-    button.addEventListener('click',page)
-
-}
-function pageAboutUS () {
-    const div = document.createElement('div');
-    const p = document.createElement('p');
-    div.className = 'text-center'
-    p.innerText = '-Melik Budak \n-Budak Melik'
-    
-    div.appendChild(p);
-   
-    main.innerHTML= '';
-    buttonAboutUs(homePage);
-    main.appendChild(div)
-}
 function renderPhoto(photo){
     const img = document.createElement('img');
     img.src = photo;
@@ -89,9 +60,11 @@ function createWrapperTable(){
     divFooter.className = 'col bg-info border border-primary'
     divFooter.innerText = 'Footer'
     divRowFooter.appendChild(divFooter);
-    buttonAboutUs(pageAboutUS);
+
 
     return container;
 
     
 }
+
+export default HomePage;
