@@ -1,0 +1,10 @@
+/* Large devices (desktops, 992px and up) */
+
+
+.clickable {
+  cursor: pointer;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
