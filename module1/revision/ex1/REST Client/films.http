@@ -1,0 +1,30 @@
+### read all film in my films table
+@baseUrl = http://localhost:3000
+GET {{baseUrl}}/films
+
+### read one film in my data
+GET {{baseUrl}}/films/2
+
+### add one film
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title":"The Shawshank Redemption",
+    "duration": 142,
+    "budget":25,
+    "link":"https://www.imdb.com/title/tt0111161/"
+}
+### delete one film in my data
+DELETE  {{baseUrl}}/films/2
+
+### add one film
+PATCH  {{baseUrl}}/films/2
+Content-Type: application/json
+
+{
+    "title":"The Shawshank Redemption",
+    "duration": 142,
+    "budget":25,
+    "link":"https://www.imdb.com/title/tt0111161/"
+}
